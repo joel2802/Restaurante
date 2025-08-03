@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Restaurante.Presenters;
 using Restaurante.Repositories;
 using Restaurante.Views;
+using Restaurante.Views.Mantenimientos;
 
 namespace Restaurante
 {
@@ -39,6 +40,12 @@ namespace Restaurante
         private void Form2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoCliente ver = new MantenimientoCliente();
+            ver.Show();
         }
     }
 }
