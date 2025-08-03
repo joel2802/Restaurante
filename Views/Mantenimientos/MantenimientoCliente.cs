@@ -52,6 +52,8 @@ namespace Restaurante.Views.Mantenimientos
 
             // Enfocar en el primer campo
             btntipocliente.Focus();
+            dataGridView1.ClearSelection();
+            estaEditandoCliente = false;
 
             btnborrar.Enabled = false;
         }
@@ -140,9 +142,8 @@ namespace Restaurante.Views.Mantenimientos
 
             try
             {
-
                 int? idCliente = txtndocumento.Tag as int?;
-                bool esActualizacion = idCliente.HasValue; 
+                bool esActualizacion = estaEditandoCliente && idCliente.HasValue;
 
                 using (SqlConnection con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;"))
                 {
@@ -150,7 +151,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     SqlCommand cmd;
 
-                    if (idCliente.HasValue)
+                    if (esActualizacion)
                     {
                         // Validar que otro cliente no tenga ese documento
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
@@ -187,7 +188,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Verificar si ya existe un cliente con el mismo número de documento
+                        // Verificar si ya existe un cliente con ese número de documento
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM clientes 
                     WHERE nodocumento = @NoDocumento", con);
@@ -233,12 +234,8 @@ namespace Restaurante.Views.Mantenimientos
 
                 CargarDatos();
                 LimpiarCampos();
-                btntipocliente.SelectedIndex = -1;
-                btntipodocumento.SelectedIndex = -1;
-                cbxprovincia.SelectedIndex = -1;
-                txtndocumento.Tag = null;
 
-                MessageBox.Show(idCliente.HasValue ? "Cliente actualizado correctamente" : "Cliente guardado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(esActualizacion ? "Cliente actualizado correctamente" : "Cliente guardado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -281,6 +278,7 @@ namespace Restaurante.Views.Mantenimientos
             txtcorreo.Clear();
             txtdireccion.Clear();
             txtcredito.Clear();
+            estaEditandoCliente = false;
 
             // Restablecer combobox al primer valor (si hay datos cargados)
             btntipocliente.SelectedIndex = -1;
@@ -466,12 +464,13 @@ namespace Restaurante.Views.Mantenimientos
             }
         }
 
+        private bool estaEditandoCliente = false;
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
-
+                estaEditandoCliente = true;
                 txtndocumento.Text = fila.Cells["NoDocumento"].Value?.ToString();
                 txtndocumento.Tag = Convert.ToInt32(fila.Cells["idcliente"].Value);
                 txtnombre.Text = fila.Cells["Nombre"].Value?.ToString();

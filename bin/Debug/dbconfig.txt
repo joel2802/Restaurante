@@ -1,1 +1,1 @@
-Server=localhost\SQLEXPRESS; database=Restaurante; integrated security=true; Trusted_Connection=True;
+Server=localhost\SQLEXPRESS; database=restaurante; integrated security=true; Trusted_Connection=True;

@@ -103,6 +103,16 @@ namespace Restaurante.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap otroFondo {
+            get {
+                object obj = ResourceManager.GetObject("otroFondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap perfil__2_ {
             get {
                 object obj = ResourceManager.GetObject("perfil (2)", resourceCulture);

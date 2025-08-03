@@ -47,5 +47,11 @@ namespace Restaurante
             MantenimientoCliente ver = new MantenimientoCliente();
             ver.Show();
         }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoCategorias ver = new MantenimientoCategorias();
+            ver.Show();
+        }
     }
 }
