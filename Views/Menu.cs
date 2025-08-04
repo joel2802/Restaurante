@@ -53,5 +53,11 @@ namespace Restaurante
             MantenimientoCategorias ver = new MantenimientoCategorias();
             ver.Show();
         }
+
+        private void salasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoSalas ver = new MantenimientoSalas();
+            ver.Show();
+        }
     }
 }

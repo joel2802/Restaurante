@@ -26,3 +26,7 @@ C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaurante.pdb
 C:\Users\joelp\source\repos\Restaurante\bin\Debug\dbconfig.txt
 C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaurante.Views.Mantenimientos.MantenimientoCliente.resources
 C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaurante.Views.Mantenimientos.MantenimientoCategorias.resources
+C:\Users\joelp\source\repos\Restaurante\bin\Debug\DataGridViewAutoFilter.dll
+C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaura.9D27851C.Up2Date
+C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaurante.Views.Mantenimientos.MantenimientoSalas.resources
+C:\Users\joelp\source\repos\Restaurante\obj\Debug\Restaurante.Views.Mantenimientos.MantenimientoUsuarios.resources

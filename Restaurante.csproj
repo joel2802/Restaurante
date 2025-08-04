@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DataGridView-AutoFilter.1.1.0\lib\net20\DataGridViewAutoFilter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -74,6 +77,18 @@
     </Compile>
     <Compile Include="Views\Mantenimientos\MantenimientoCliente.Designer.cs">
       <DependentUpon>MantenimientoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoSalas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoSalas.Designer.cs">
+      <DependentUpon>MantenimientoSalas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoUsuarios.Designer.cs">
+      <DependentUpon>MantenimientoUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu.cs">
       <SubType>Form</SubType>
@@ -105,6 +120,12 @@
     <EmbeddedResource Include="Views\Mantenimientos\MantenimientoCliente.resx">
       <DependentUpon>MantenimientoCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoSalas.resx">
+      <DependentUpon>MantenimientoSalas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoUsuarios.resx">
+      <DependentUpon>MantenimientoUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +134,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

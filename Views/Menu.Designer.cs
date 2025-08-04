@@ -34,8 +34,9 @@
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.salasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +65,8 @@
             // 
             this.mantenimientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
-            this.categoriasToolStripMenuItem});
+            this.categoriasToolStripMenuItem,
+            this.salasToolStripMenuItem});
             this.mantenimientosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mantenimientosToolStripMenuItem.Name = "mantenimientosToolStripMenuItem";
             this.mantenimientosToolStripMenuItem.Size = new System.Drawing.Size(195, 35);
@@ -91,6 +93,13 @@
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(118, 35);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
+            // categoriasToolStripMenuItem
+            // 
+            this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
+            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
+            this.categoriasToolStripMenuItem.Text = "Categorias";
+            this.categoriasToolStripMenuItem.Click += new System.EventHandler(this.categoriasToolStripMenuItem_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::Restaurante.Properties.Resources.otroFondo;
@@ -101,12 +110,12 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // categoriasToolStripMenuItem
+            // salasToolStripMenuItem
             // 
-            this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
-            this.categoriasToolStripMenuItem.Text = "Categorias";
-            this.categoriasToolStripMenuItem.Click += new System.EventHandler(this.categoriasToolStripMenuItem_Click);
+            this.salasToolStripMenuItem.Name = "salasToolStripMenuItem";
+            this.salasToolStripMenuItem.Size = new System.Drawing.Size(224, 36);
+            this.salasToolStripMenuItem.Text = "Salas";
+            this.salasToolStripMenuItem.Click += new System.EventHandler(this.salasToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -138,5 +147,6 @@
         private System.Windows.Forms.ToolStripMenuItem movimientosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salasToolStripMenuItem;
     }
 }

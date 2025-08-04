@@ -131,6 +131,9 @@ namespace Restaurante.Views.Mantenimientos
                 con.Close();
             }
         }
+
+
+
        
         private void btnguardarr_Click(object sender, EventArgs e)
         {
@@ -294,6 +297,8 @@ namespace Restaurante.Views.Mantenimientos
 
         private void CargarDatos()
         {
+
+
             // Define la cadena de conexión (ajústala a tu servidor y base de datos)
             string connectionString = @"Server=localhost\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;";
 
@@ -331,10 +336,15 @@ namespace Restaurante.Views.Mantenimientos
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                dataGridView1.DataSource = dt;
+                // Crear y enlazar el BindingSource al DataTable
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = dt;
+
+                // Asignar el BindingSource al DataGridView (solo una vez)
+                dataGridView1.DataSource = bindingSource;
 
                 // Lista de columnas en el orden deseado, FechaCreacion al final
-               
+
 
                 // Ocultar columnas de ID que no quieres mostrar
                 dataGridView1.Columns["IdCliente"].Visible = false;
@@ -344,6 +354,21 @@ namespace Restaurante.Views.Mantenimientos
                 
 
                 dataGridView1.Refresh();
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dataGridView1.ScrollBars = ScrollBars.Both;
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;       // alto de filas
+                if (dataGridView1.Columns.Contains("TipoClienteNombre"))
+                {
+                    dataGridView1.Columns["TipoClienteNombre"].Width = 150; // o el ancho que quieras
+                }
+
+
+                // Activar filtrado en encabezados
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
+                }
             }
         }
 
@@ -485,7 +510,7 @@ namespace Restaurante.Views.Mantenimientos
                     ? fila.Cells["LimiteCredito"].Value.ToString()
                     : "";
 
-                // ComboBoxes (asegúrate de que estén correctamente enlazados con ValueMember)
+              
                 if (fila.Cells["IdTipoCliente"].Value != DBNull.Value)
                     btntipocliente.SelectedValue = fila.Cells["IdTipoCliente"].Value;
 

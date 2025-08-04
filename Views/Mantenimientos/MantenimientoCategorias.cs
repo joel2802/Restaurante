@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataGridViewAutoFilter;
 
 namespace Restaurante.Views.Mantenimientos
 {
@@ -43,21 +44,25 @@ namespace Restaurante.Views.Mantenimientos
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                dataGridView1.DataSource = dt;
+                // --- Cambio clave: Usar BindingSource ---
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = dt; // Enlazar el DataTable al BindingSource
+                dataGridView1.DataSource = bindingSource; // Asignar el BindingSource al DataGridView
 
+                // Configuración de columnas (opcional)
                 if (dataGridView1.Columns.Contains("IdCategoria"))
                     dataGridView1.Columns["IdCategoria"].Visible = false;
 
+                dataGridView1.Columns["estado"].Visible = false;
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // --- Asegúrate de que DataGridViewAutoFilter esté configurado correctamente ---
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
-                    if (col.Name != "IdCategoria")
-                        col.Visible = true;
+                    col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
                 }
 
-                dataGridView1.Columns["IdCategoria"].Visible = false;
-                dataGridView1.Columns["estado"].Visible = false;
-                dataGridView1.Refresh();
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
         private void CargarCategoriasEnGrid()
