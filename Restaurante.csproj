@@ -65,7 +65,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\ConsultaCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaCategorias.Designer.cs">
+      <DependentUpon>ConsultaCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaClientes.Designer.cs">
+      <DependentUpon>ConsultaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaMedidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaMedidas.Designer.cs">
+      <DependentUpon>ConsultaMedidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaMesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaMesas.Designer.cs">
+      <DependentUpon>ConsultaMesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaProveedor.Designer.cs">
+      <DependentUpon>ConsultaProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaSalas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaSalas.Designer.cs">
+      <DependentUpon>ConsultaSalas.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\clienteModel.cs" />
+    <Compile Include="model\UsuarioModel.cs" />
     <Compile Include="Views\Mantenimientos\MantenimientoCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +114,30 @@
     </Compile>
     <Compile Include="Views\Mantenimientos\MantenimientoCliente.Designer.cs">
       <DependentUpon>MantenimientoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoMedida.Designer.cs">
+      <DependentUpon>MantenimientoMedida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoMesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoMesas.Designer.cs">
+      <DependentUpon>MantenimientoMesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoProductos.Designer.cs">
+      <DependentUpon>MantenimientoProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mantenimientos\MantenimientoProveedor.Designer.cs">
+      <DependentUpon>MantenimientoProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mantenimientos\MantenimientoSalas.cs">
       <SubType>Form</SubType>
@@ -111,6 +172,30 @@
     <Compile Include="Repositories\Interfaces\LoginRepository.cs" />
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\ILoginView.cs" />
+    <Compile Include="Views\Ventanas\VentanaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Ventanas\VentanaUsuario.Designer.cs">
+      <DependentUpon>VentanaUsuario.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Consultas\ConsultaCategorias.resx">
+      <DependentUpon>ConsultaCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaClientes.resx">
+      <DependentUpon>ConsultaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaMedidas.resx">
+      <DependentUpon>ConsultaMedidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaMesas.resx">
+      <DependentUpon>ConsultaMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaProveedor.resx">
+      <DependentUpon>ConsultaProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaSalas.resx">
+      <DependentUpon>ConsultaSalas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +204,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mantenimientos\MantenimientoCliente.resx">
       <DependentUpon>MantenimientoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoMedida.resx">
+      <DependentUpon>MantenimientoMedida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoMesas.resx">
+      <DependentUpon>MantenimientoMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoProductos.resx">
+      <DependentUpon>MantenimientoProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mantenimientos\MantenimientoProveedor.resx">
+      <DependentUpon>MantenimientoProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mantenimientos\MantenimientoSalas.resx">
       <DependentUpon>MantenimientoSalas.cs</DependentUpon>
@@ -133,6 +230,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ventanas\VentanaUsuario.resx">
+      <DependentUpon>VentanaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -355,9 +355,9 @@ namespace Restaurante.Views.Mantenimientos
 
                 dataGridView1.Refresh();
 
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                dataGridView1.ScrollBars = ScrollBars.Both;
-                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;       // alto de filas
+               
+               
+                     
                 if (dataGridView1.Columns.Contains("TipoClienteNombre"))
                 {
                     dataGridView1.Columns["TipoClienteNombre"].Width = 150; // o el ancho que quieras
@@ -447,7 +447,13 @@ namespace Restaurante.Views.Mantenimientos
         }
         private void MantenimientoCliente_Load(object sender, EventArgs e)
         {
-            
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                 System.Reflection.BindingFlags.NonPublic |
+                 System.Reflection.BindingFlags.Instance |
+                 System.Reflection.BindingFlags.SetProperty,
+                 null, dataGridView1, new object[] { true });
+
+
         }
 
         private void btnagregar_Click(object sender, EventArgs e)

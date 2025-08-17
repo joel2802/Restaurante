@@ -124,6 +124,12 @@ namespace Restaurante.Views.Mantenimientos
                 return;
             }
 
+            if (cbxsucursal.SelectedIndex == -1 || cbxsucursal.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor, selecciona una sucursal antes de guardar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 int? idSala = txtsalas.Tag as int?;

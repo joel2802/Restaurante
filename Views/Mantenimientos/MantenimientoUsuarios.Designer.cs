@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtdocumento = new System.Windows.Forms.TextBox();
+            this.txtndocumentos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,6 +46,18 @@
             this.txtcontrasena = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cbxnivelacceso = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbxstatus = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtcomision = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbxsucursal = new System.Windows.Forms.ComboBox();
+            this.btnborrar = new System.Windows.Forms.Button();
+            this.btnlimpiar = new System.Windows.Forms.Button();
+            this.btnguardar = new System.Windows.Forms.Button();
+            this.btnventana = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -58,15 +70,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "No. Documento:";
             // 
-            // txtdocumento
+            // txtndocumentos
             // 
-            this.txtdocumento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtdocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdocumento.Location = new System.Drawing.Point(42, 59);
-            this.txtdocumento.Multiline = true;
-            this.txtdocumento.Name = "txtdocumento";
-            this.txtdocumento.Size = new System.Drawing.Size(229, 39);
-            this.txtdocumento.TabIndex = 2;
+            this.txtndocumentos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtndocumentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtndocumentos.Location = new System.Drawing.Point(42, 59);
+            this.txtndocumentos.Multiline = true;
+            this.txtndocumentos.Name = "txtndocumentos";
+            this.txtndocumentos.Size = new System.Drawing.Size(229, 39);
+            this.txtndocumentos.TabIndex = 2;
             // 
             // label2
             // 
@@ -100,6 +112,7 @@
             // 
             // cbxsexo
             // 
+            this.cbxsexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxsexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxsexo.FormattingEnabled = true;
             this.cbxsexo.Location = new System.Drawing.Point(42, 168);
@@ -219,18 +232,144 @@
             // 
             // cbxnivelacceso
             // 
+            this.cbxnivelacceso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxnivelacceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxnivelacceso.FormattingEnabled = true;
-            this.cbxnivelacceso.Location = new System.Drawing.Point(42, 508);
+            this.cbxnivelacceso.Location = new System.Drawing.Point(42, 497);
             this.cbxnivelacceso.Name = "cbxnivelacceso";
             this.cbxnivelacceso.Size = new System.Drawing.Size(225, 34);
             this.cbxnivelacceso.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(355, 472);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(182, 22);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Estatus de Acceso:";
+            // 
+            // cbxstatus
+            // 
+            this.cbxstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxstatus.FormattingEnabled = true;
+            this.cbxstatus.Location = new System.Drawing.Point(359, 497);
+            this.cbxstatus.Name = "cbxstatus";
+            this.cbxstatus.Size = new System.Drawing.Size(222, 34);
+            this.cbxstatus.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(42, 586);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(201, 22);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Comisión por Ventas:";
+            // 
+            // txtcomision
+            // 
+            this.txtcomision.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcomision.Location = new System.Drawing.Point(45, 611);
+            this.txtcomision.Multiline = true;
+            this.txtcomision.Name = "txtcomision";
+            this.txtcomision.Size = new System.Drawing.Size(224, 37);
+            this.txtcomision.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(355, 586);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(183, 22);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Sucursal Asignada:";
+            // 
+            // cbxsucursal
+            // 
+            this.cbxsucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxsucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxsucursal.FormattingEnabled = true;
+            this.cbxsucursal.Location = new System.Drawing.Point(359, 611);
+            this.cbxsucursal.Name = "cbxsucursal";
+            this.cbxsucursal.Size = new System.Drawing.Size(219, 34);
+            this.cbxsucursal.TabIndex = 26;
+            // 
+            // btnborrar
+            // 
+            this.btnborrar.Location = new System.Drawing.Point(45, 716);
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(139, 58);
+            this.btnborrar.TabIndex = 27;
+            this.btnborrar.Text = "Borrar";
+            this.btnborrar.UseVisualStyleBackColor = true;
+            // 
+            // btnlimpiar
+            // 
+            this.btnlimpiar.Location = new System.Drawing.Point(240, 716);
+            this.btnlimpiar.Name = "btnlimpiar";
+            this.btnlimpiar.Size = new System.Drawing.Size(118, 58);
+            this.btnlimpiar.TabIndex = 28;
+            this.btnlimpiar.Text = "Limpiar";
+            this.btnlimpiar.UseVisualStyleBackColor = true;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
+            // 
+            // btnguardar
+            // 
+            this.btnguardar.Location = new System.Drawing.Point(403, 716);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(122, 58);
+            this.btnguardar.TabIndex = 29;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
+            // 
+            // btnventana
+            // 
+            this.btnventana.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnventana.Location = new System.Drawing.Point(46, 798);
+            this.btnventana.Name = "btnventana";
+            this.btnventana.Size = new System.Drawing.Size(115, 58);
+            this.btnventana.TabIndex = 30;
+            this.btnventana.Text = "+";
+            this.btnventana.UseVisualStyleBackColor = true;
+            this.btnventana.Click += new System.EventHandler(this.btnventana_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(623, 34);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(675, 716);
+            this.dataGridView1.TabIndex = 80;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // MantenimientoUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 868);
+            this.ClientSize = new System.Drawing.Size(1329, 868);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnventana);
+            this.Controls.Add(this.btnguardar);
+            this.Controls.Add(this.btnlimpiar);
+            this.Controls.Add(this.btnborrar);
+            this.Controls.Add(this.cbxsucursal);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtcomision);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.cbxstatus);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.cbxnivelacceso);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtcontrasena);
@@ -247,11 +386,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtdocumento);
+            this.Controls.Add(this.txtndocumentos);
             this.Controls.Add(this.label1);
             this.Name = "MantenimientoUsuarios";
             this.Text = "MantenimientoUsuarios";
             this.Load += new System.EventHandler(this.MantenimientoUsuarios_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,7 +400,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtdocumento;
+        private System.Windows.Forms.TextBox txtndocumentos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.Label label3;
@@ -277,5 +417,16 @@
         private System.Windows.Forms.TextBox txtcontrasena;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbxnivelacceso;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbxstatus;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtcomision;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbxsucursal;
+        private System.Windows.Forms.Button btnborrar;
+        private System.Windows.Forms.Button btnlimpiar;
+        private System.Windows.Forms.Button btnguardar;
+        private System.Windows.Forms.Button btnventana;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
