@@ -55,9 +55,11 @@
             this.btnborrar = new System.Windows.Forms.Button();
             this.btnlimpiar = new System.Windows.Forms.Button();
             this.btnguardar = new System.Windows.Forms.Button();
-            this.btnventana = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -301,66 +303,85 @@
             // 
             // btnborrar
             // 
+            this.btnborrar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnborrar.Image = global::Restaurante.Properties.Resources.borrar;
+            this.btnborrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnborrar.Location = new System.Drawing.Point(45, 716);
             this.btnborrar.Name = "btnborrar";
             this.btnborrar.Size = new System.Drawing.Size(139, 58);
             this.btnborrar.TabIndex = 27;
             this.btnborrar.Text = "Borrar";
-            this.btnborrar.UseVisualStyleBackColor = true;
+            this.btnborrar.UseVisualStyleBackColor = false;
             // 
             // btnlimpiar
             // 
+            this.btnlimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnlimpiar.Image = global::Restaurante.Properties.Resources.cepillo_de_pintura;
+            this.btnlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlimpiar.Location = new System.Drawing.Point(240, 716);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(118, 58);
             this.btnlimpiar.TabIndex = 28;
             this.btnlimpiar.Text = "Limpiar";
-            this.btnlimpiar.UseVisualStyleBackColor = true;
+            this.btnlimpiar.UseVisualStyleBackColor = false;
             this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
             // 
             // btnguardar
             // 
-            this.btnguardar.Location = new System.Drawing.Point(403, 716);
+            this.btnguardar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnguardar.Image = global::Restaurante.Properties.Resources.guardar_el_archivo;
+            this.btnguardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnguardar.Location = new System.Drawing.Point(395, 716);
             this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(122, 58);
+            this.btnguardar.Size = new System.Drawing.Size(130, 58);
             this.btnguardar.TabIndex = 29;
             this.btnguardar.Text = "Guardar";
-            this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.UseVisualStyleBackColor = false;
             this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
-            // 
-            // btnventana
-            // 
-            this.btnventana.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnventana.Location = new System.Drawing.Point(46, 798);
-            this.btnventana.Name = "btnventana";
-            this.btnventana.Size = new System.Drawing.Size(115, 58);
-            this.btnventana.TabIndex = 30;
-            this.btnventana.Text = "+";
-            this.btnventana.UseVisualStyleBackColor = true;
-            this.btnventana.Click += new System.EventHandler(this.btnventana_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(623, 34);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(675, 716);
+            this.dataGridView1.Size = new System.Drawing.Size(518, 426);
             this.dataGridView1.TabIndex = 80;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Location = new System.Drawing.Point(627, 100);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(524, 431);
+            this.panel1.TabIndex = 81;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Image = global::Restaurante.Properties.Resources.buscar__1_;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(598, 716);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 60);
+            this.button1.TabIndex = 82;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // MantenimientoUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1329, 868);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnventana);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.btnlimpiar);
             this.Controls.Add(this.btnborrar);
@@ -388,10 +409,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtndocumentos);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MantenimientoUsuarios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoUsuarios";
             this.Load += new System.EventHandler(this.MantenimientoUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,7 +450,8 @@
         private System.Windows.Forms.Button btnborrar;
         private System.Windows.Forms.Button btnlimpiar;
         private System.Windows.Forms.Button btnguardar;
-        private System.Windows.Forms.Button btnventana;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }

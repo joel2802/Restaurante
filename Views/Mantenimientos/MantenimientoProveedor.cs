@@ -65,9 +65,9 @@ namespace Restaurante.Views.Mantenimientos
                 da.Fill(dt);
 
                 cbxdocumento.DataSource = dt;
-                cbxdocumento.DisplayMember = "descripcion";   // Lo que se muestra
-                cbxdocumento.ValueMember = "idtipo"; // El valor real
-                cbxdocumento.SelectedIndex = -1; // Deja el combo vacío al cargar
+                cbxdocumento.DisplayMember = "descripcion";   
+                cbxdocumento.ValueMember = "idtipo"; 
+                cbxdocumento.SelectedIndex = -1; 
             }
         }
 
@@ -146,7 +146,6 @@ namespace Restaurante.Views.Mantenimientos
 
                     dataGridView1.DataSource = dt;
 
-                    // Ocultar columnas de ID y estado
                     if (dataGridView1.Columns.Contains("idproveedor"))
                         dataGridView1.Columns["idproveedor"].Visible = false;
                     if (dataGridView1.Columns.Contains("idtipodocumento"))
@@ -174,7 +173,7 @@ namespace Restaurante.Views.Mantenimientos
                     if (reader.Read())
                     {
                         txtndocumento.Text = reader["nodocumento"].ToString();
-                        txtndocumento.Tag = idProveedor;  // Aquí guardamos el id real en el Tag
+                        txtndocumento.Tag = idProveedor;  
                         cbxdocumento.SelectedValue = Convert.ToInt32(reader["idtipodocumento"]);
                         txtnombre.Text = reader["nombre"].ToString();
                         txtntelefono.Text = reader["telefono"].ToString();
@@ -184,7 +183,7 @@ namespace Restaurante.Views.Mantenimientos
                         txtcorreo.Text = reader["correo"].ToString();
                         txtvendedor.Text = reader["nombre_vendedor"].ToString();
 
-                        estaEditando = true; // Marca que estás en modo edición
+                        estaEditando = true; 
                     }
                 }
             }
@@ -199,8 +198,7 @@ namespace Restaurante.Views.Mantenimientos
         private bool estaEditando = false;
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            // Validaciones de campos obligatorios
-            // Validaciones
+            
             if (string.IsNullOrWhiteSpace(txtndocumento.Text))
             {
                 MessageBox.Show("Por favor, ingresa el número de documento.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -259,7 +257,6 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Verificar duplicado excluyendo el actual
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM proveedor 
                     WHERE nodocumento = @NoDocumento AND idproveedor <> @IdProveedor", con);
@@ -273,7 +270,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar
+                        
                         cmd = new SqlCommand(@"
                     UPDATE proveedor
                     SET nodocumento = @NoDocumento,
@@ -290,7 +287,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Verificar duplicado en inserción
+                        
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM proveedor 
                     WHERE nodocumento = @NoDocumento", con);
@@ -303,7 +300,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar
+                       
                         cmd = new SqlCommand(@"
                     INSERT INTO proveedor 
                     (nodocumento, idtipodocumento, nombre, telefono, idprovincia, iddepartamento, direccion, correo, nombre_vendedor)
@@ -311,7 +308,7 @@ namespace Restaurante.Views.Mantenimientos
                     (@NoDocumento, @IdTipoDocumento, @Nombre, @Telefono, @IdProvincia, @IdDepartamento, @Direccion, @Correo, @NombreVendedor)", con);
                     }
 
-                    // Parámetros comunes
+                 
                     cmd.Parameters.AddWithValue("@NoDocumento", txtndocumento.Text.Trim());
                     cmd.Parameters.AddWithValue("@IdTipoDocumento", Convert.ToInt32(cbxdocumento.SelectedValue));
                     cmd.Parameters.AddWithValue("@Nombre", txtnombre.Text.Trim());
@@ -328,7 +325,7 @@ namespace Restaurante.Views.Mantenimientos
                 CargarProveedores();
                 LimpiarCampos();
                 estaEditando = false;
-                txtndocumento.Tag = null; // Limpias el Tag para no mantener id viejo
+                txtndocumento.Tag = null; 
 
 
                 MessageBox.Show(esActualizacion ? "Proveedor actualizado correctamente" : "Proveedor guardado correctamente",
@@ -364,7 +361,7 @@ namespace Restaurante.Views.Mantenimientos
             txtcorreo.Clear();
             txtvendedor.Clear();
 
-            // Si quieres poner el cursor en el primer campo
+          
             cbxdocumento.Focus();
         }
 
@@ -390,7 +387,7 @@ namespace Restaurante.Views.Mantenimientos
                 txtcorreo.Text = row.Cells["correo"].Value.ToString();
                 txtvendedor.Text = row.Cells["nombre_vendedor"].Value.ToString();
 
-                // Guardar el ID en Tag para usarlo en la edición (aquí debe ser txtndocumento)
+                
                 txtndocumento.Tag = Convert.ToInt32(row.Cells["idproveedor"].Value);
 
                 btnborrar.Enabled = true;
@@ -409,7 +406,7 @@ namespace Restaurante.Views.Mantenimientos
             txtcorreo.Clear();
             txtvendedor.Clear();
 
-            // Si quieres poner el cursor en el primer campo
+          
             cbxdocumento.Focus();
             estaEditando = false;
             dataGridView1.ClearSelection();
@@ -432,12 +429,12 @@ namespace Restaurante.Views.Mantenimientos
 
                 if (resultado == DialogResult.Yes)
                 {
-                    EliminarProveedor(id);  // Marca como estado = 0
-                    CargarProveedores();    // Recarga el DataGridView con los proveedores
-                    LimpiarCampos();        // Limpia los campos del formulario
+                    EliminarProveedor(id);  
+                    CargarProveedores();    
+                    LimpiarCampos();        
                     btnborrar.Enabled = false;
                     estaEditando = false;
-                    txtndocumento.Tag = null; // Limpia el tag para evitar confusiones futuras
+                    txtndocumento.Tag = null; 
                 }
             }
             else

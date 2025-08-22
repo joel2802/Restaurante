@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnfoto = new System.Windows.Forms.Button();
             this.dtproducto = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtnombreproducto = new System.Windows.Forms.TextBox();
@@ -60,12 +61,11 @@
             this.cmbcategoria = new System.Windows.Forms.ComboBox();
             this.txtexistenciaprod = new System.Windows.Forms.TextBox();
             this.txtdescuento = new System.Windows.Forms.TextBox();
-            this.pbfoto = new System.Windows.Forms.PictureBox();
             this.btnguardar = new System.Windows.Forms.Button();
             this.btnlimpiar = new System.Windows.Forms.Button();
             this.btnborrar = new System.Windows.Forms.Button();
             this.btnabrir = new System.Windows.Forms.Button();
-            this.btnfoto = new System.Windows.Forms.Button();
+            this.pbfoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtproducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbfoto)).BeginInit();
@@ -80,6 +80,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(562, 545);
             this.panel1.TabIndex = 15;
+            // 
+            // btnfoto
+            // 
+            this.btnfoto.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnfoto.Location = new System.Drawing.Point(22, 49);
+            this.btnfoto.Name = "btnfoto";
+            this.btnfoto.Size = new System.Drawing.Size(120, 80);
+            this.btnfoto.TabIndex = 2;
+            this.btnfoto.Text = "Buscar la Foto";
+            this.btnfoto.UseVisualStyleBackColor = true;
+            this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
             // 
             // dtproducto
             // 
@@ -390,6 +401,61 @@
             this.txtdescuento.Size = new System.Drawing.Size(218, 41);
             this.txtdescuento.TabIndex = 153;
             // 
+            // btnguardar
+            // 
+            this.btnguardar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnguardar.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnguardar.Image = global::Restaurante.Properties.Resources.guardar_el_archivo;
+            this.btnguardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnguardar.Location = new System.Drawing.Point(19, 739);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(135, 66);
+            this.btnguardar.TabIndex = 154;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.UseVisualStyleBackColor = false;
+            this.btnguardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnlimpiar
+            // 
+            this.btnlimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnlimpiar.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlimpiar.Image = global::Restaurante.Properties.Resources.cepillo_de_pintura;
+            this.btnlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnlimpiar.Location = new System.Drawing.Point(215, 743);
+            this.btnlimpiar.Name = "btnlimpiar";
+            this.btnlimpiar.Size = new System.Drawing.Size(140, 64);
+            this.btnlimpiar.TabIndex = 155;
+            this.btnlimpiar.Text = "Limpiar";
+            this.btnlimpiar.UseVisualStyleBackColor = false;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
+            // 
+            // btnborrar
+            // 
+            this.btnborrar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnborrar.Image = global::Restaurante.Properties.Resources.borrar;
+            this.btnborrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnborrar.Location = new System.Drawing.Point(570, 750);
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(126, 55);
+            this.btnborrar.TabIndex = 156;
+            this.btnborrar.Text = "Borrar";
+            this.btnborrar.UseVisualStyleBackColor = false;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click_1);
+            // 
+            // btnabrir
+            // 
+            this.btnabrir.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnabrir.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnabrir.Image = global::Restaurante.Properties.Resources.buscar__1_;
+            this.btnabrir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnabrir.Location = new System.Drawing.Point(406, 743);
+            this.btnabrir.Name = "btnabrir";
+            this.btnabrir.Size = new System.Drawing.Size(138, 66);
+            this.btnabrir.TabIndex = 157;
+            this.btnabrir.Text = "Buscar";
+            this.btnabrir.UseVisualStyleBackColor = false;
+            this.btnabrir.Click += new System.EventHandler(this.btnAbrir_Click);
+            // 
             // pbfoto
             // 
             this.pbfoto.Location = new System.Drawing.Point(182, 3);
@@ -399,60 +465,6 @@
             this.pbfoto.TabIndex = 1;
             this.pbfoto.TabStop = false;
             this.pbfoto.Click += new System.EventHandler(this.pbfoto_Click);
-            // 
-            // btnguardar
-            // 
-            this.btnguardar.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnguardar.Location = new System.Drawing.Point(19, 739);
-            this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(135, 66);
-            this.btnguardar.TabIndex = 154;
-            this.btnguardar.Text = "Guardar";
-            this.btnguardar.UseVisualStyleBackColor = true;
-            this.btnguardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnlimpiar
-            // 
-            this.btnlimpiar.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlimpiar.Location = new System.Drawing.Point(215, 743);
-            this.btnlimpiar.Name = "btnlimpiar";
-            this.btnlimpiar.Size = new System.Drawing.Size(140, 64);
-            this.btnlimpiar.TabIndex = 155;
-            this.btnlimpiar.Text = "Limpiar";
-            this.btnlimpiar.UseVisualStyleBackColor = true;
-            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
-            // 
-            // btnborrar
-            // 
-            this.btnborrar.Location = new System.Drawing.Point(616, 763);
-            this.btnborrar.Name = "btnborrar";
-            this.btnborrar.Size = new System.Drawing.Size(14, 23);
-            this.btnborrar.TabIndex = 156;
-            this.btnborrar.Text = "button3";
-            this.btnborrar.UseVisualStyleBackColor = true;
-            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click_1);
-            // 
-            // btnabrir
-            // 
-            this.btnabrir.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnabrir.Location = new System.Drawing.Point(406, 743);
-            this.btnabrir.Name = "btnabrir";
-            this.btnabrir.Size = new System.Drawing.Size(138, 66);
-            this.btnabrir.TabIndex = 157;
-            this.btnabrir.Text = "Buscar";
-            this.btnabrir.UseVisualStyleBackColor = true;
-            this.btnabrir.Click += new System.EventHandler(this.btnAbrir_Click);
-            // 
-            // btnfoto
-            // 
-            this.btnfoto.Font = new System.Drawing.Font("Rockwell", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnfoto.Location = new System.Drawing.Point(22, 49);
-            this.btnfoto.Name = "btnfoto";
-            this.btnfoto.Size = new System.Drawing.Size(120, 80);
-            this.btnfoto.TabIndex = 2;
-            this.btnfoto.Text = "Buscar la Foto";
-            this.btnfoto.UseVisualStyleBackColor = true;
-            this.btnfoto.Click += new System.EventHandler(this.btnfoto_Click);
             // 
             // MantenimientoProductos
             // 
@@ -494,7 +506,9 @@
             this.Controls.Add(this.txtnombreproducto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MantenimientoProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoProductos";
             this.Load += new System.EventHandler(this.MantenimientoProductos_Load);
             this.panel1.ResumeLayout(false);

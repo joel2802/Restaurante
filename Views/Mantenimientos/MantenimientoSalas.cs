@@ -27,7 +27,7 @@ namespace Restaurante.Views.Mantenimientos
         {
 
             string connectionString = @"Server=localhost\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;";
-            int idsucursal = 1; // Puedes cambiar este valor o asignarlo dinámicamente
+            int idsucursal = 1; 
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -91,8 +91,8 @@ namespace Restaurante.Views.Mantenimientos
                     da.Fill(dt);
 
                     cbxsucursal.DataSource = dt;
-                    cbxsucursal.DisplayMember = "nombre";       // visible
-                    cbxsucursal.ValueMember = "idsucursal";     // el ID (int)
+                    cbxsucursal.DisplayMember = "nombre";       
+                    cbxsucursal.ValueMember = "idsucursal";   
                     cbxsucursal.SelectedIndex = -1;
                 }
             }
@@ -105,7 +105,7 @@ namespace Restaurante.Views.Mantenimientos
         private bool estaEditando = false;
         private void LimpiarCampos()
         {
-            // Limpiar campos de texto
+         
             txtsalas.Clear();
             cbxsucursal.SelectedIndex = -1;
             estaEditando = false;
@@ -144,7 +144,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Validar duplicado en actualización
+                       
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM salas 
                     WHERE nombre = @Nombre AND idsucursal = @IdSucursal AND idsala <> @IdSala", con);
@@ -159,7 +159,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar
+                     
                         cmd = new SqlCommand(@"
                     UPDATE salas
                     SET nombre = @Nombre, idsucursal = @IdSucursal
@@ -168,7 +168,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Validar duplicado al insertar
+                  
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM salas 
                     WHERE nombre = @Nombre AND idsucursal = @IdSucursal", con);
@@ -182,13 +182,13 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar
+                      
                         cmd = new SqlCommand(@"
                     INSERT INTO salas (nombre, idsucursal)
                     VALUES (@Nombre, @IdSucursal)", con);
                     }
 
-                    // Parámetros comunes
+                  
                     cmd.Parameters.AddWithValue("@Nombre", txtsalas.Text.Trim());
                     cmd.Parameters.AddWithValue("@IdSucursal", idSucursal);
 
@@ -243,7 +243,7 @@ namespace Restaurante.Views.Mantenimientos
             btnborrar.Enabled = false;
             LimpiarCampos();
                    
-            cbxsucursal.SelectedIndex = -1;  // Limpia la selección del ComboBox
+            cbxsucursal.SelectedIndex = -1;  
             
             dataGridView1.ClearSelection();
         }
@@ -281,8 +281,8 @@ namespace Restaurante.Views.Mantenimientos
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
             estaEditando = true;
             txtsalas.Text = row.Cells["nombre"].Value.ToString();
-            txtsalas.Tag = row.Cells["idsala"].Value;  // Guarda el id para editar
-            cbxsucursal.SelectedValue = Convert.ToInt32(row.Cells["idsucursal"].Value); // Cargar sucursal
+            txtsalas.Tag = row.Cells["idsala"].Value;  
+            cbxsucursal.SelectedValue = Convert.ToInt32(row.Cells["idsucursal"].Value); 
             btnborrar.Enabled = true;
         }
     }

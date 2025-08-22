@@ -22,7 +22,6 @@ namespace Restaurante.Views.Mantenimientos
 
         private void LimpiarCampos()
         {
-            // Limpiar campos de texto
             txtnombre.Clear();
             txtmedida.Clear();
             estaEditando = false;
@@ -53,7 +52,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     dataGridView1.DataSource = bindingSource;
 
-                    // Oculta columnas si es necesario
+                   
                     if (dataGridView1.Columns.Contains("estado"))
                         dataGridView1.Columns["estado"].Visible = false;
 
@@ -65,7 +64,6 @@ namespace Restaurante.Views.Mantenimientos
                     dataGridView1.ScrollBars = ScrollBars.Both;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    // Encabezados con filtro si usas DataGridViewAutoFilter
                     foreach (DataGridViewColumn col in dataGridView1.Columns)
                     {
                         col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -131,8 +129,8 @@ namespace Restaurante.Views.Mantenimientos
                 if (resultado == DialogResult.Yes)
                 {
                     EliminarMedida(id);
-                    CargarDatosMedidas();       // Recargar el DataGridView
-                    LimpiarCampos();     // Limpiar controles (si lo tienes)
+                    CargarDatosMedidas();       
+                    LimpiarCampos();     
                     btnborrar.Enabled = false;
                 }
             }
@@ -152,7 +150,7 @@ namespace Restaurante.Views.Mantenimientos
                 txtnombre.Text = row.Cells["Nombre"].Value.ToString();
                 txtmedida.Text = row.Cells["Sigla"].Value.ToString();
 
-                txtnombre.Tag = row.Cells["IdMedida"].Value; // Para guardar el ID como referencia
+                txtnombre.Tag = row.Cells["IdMedida"].Value; 
                 btnborrar.Enabled = true;
             }
         }
@@ -167,7 +165,7 @@ namespace Restaurante.Views.Mantenimientos
 
             try
             {
-                int? idMedida = txtnombre.Tag as int?; // Esto lo llenas desde el CellClick al editar
+                int? idMedida = txtnombre.Tag as int?; 
                 bool esActualizacion = estaEditando && idMedida.HasValue;
 
                 using (SqlConnection con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;"))
@@ -177,7 +175,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Validar duplicado en actualización
+                      
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM medidas 
                     WHERE nombre = @Nombre AND sigla = @Sigla AND idmedida <> @IdMedida", con);
@@ -192,7 +190,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar
+                     
                         cmd = new SqlCommand(@"
                     UPDATE medidas
                     SET nombre = @Nombre, sigla = @Sigla
@@ -201,7 +199,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Validar duplicado al insertar
+                       
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM medidas 
                     WHERE nombre = @Nombre AND sigla = @Sigla", con);
@@ -215,7 +213,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar
+                     
                         cmd = new SqlCommand(@"
                     INSERT INTO medidas (nombre, sigla)
                     VALUES (@Nombre, @Sigla)", con);
@@ -226,8 +224,8 @@ namespace Restaurante.Views.Mantenimientos
                     cmd.ExecuteNonQuery();
                 }
 
-                CargarDatosMedidas();      // Recargar el DataGridView
-                LimpiarCampos();    // Limpiar campos del formulario
+                CargarDatosMedidas();     
+                LimpiarCampos();    
                 estaEditando = false;
 
                 MessageBox.Show(esActualizacion ? "Medida actualizada correctamente" : "Medida guardada correctamente",

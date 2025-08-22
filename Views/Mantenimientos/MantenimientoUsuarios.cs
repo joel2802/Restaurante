@@ -23,6 +23,7 @@ namespace Restaurante.Views.Mantenimientos
             CargarTipoUsuarios();
             CargarDatos();
             CargarSucursales();
+            panel1.Visible = false;
 
 
             dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
@@ -49,7 +50,6 @@ namespace Restaurante.Views.Mantenimientos
                     connection.Open();
                     command.Connection = connection;
 
-                    // Consulta original usando u.* y joins
                     command.CommandText = @"
                 SELECT u.*, s.nombre AS NombreSucursal, tu.descripcion AS TipoUsuario, sx.descripcion AS Sexo
                 FROM usuarios u
@@ -61,12 +61,11 @@ namespace Restaurante.Views.Mantenimientos
                     adapter.Fill(dt);
                 }
 
-                // BindingSource local
+                
                 BindingSource usuarioBindingSource = new BindingSource();
                 usuarioBindingSource.DataSource = dt;
                 dataGridView1.DataSource = usuarioBindingSource;
 
-                // Ocultar columnas de ID y contraseña
                 string[] columnasOcultas = { "idusuario", "idsexo", "idtipo", "idsucursal", "contrasena" };
                 foreach (var col in columnasOcultas)
                 {
@@ -74,7 +73,7 @@ namespace Restaurante.Views.Mantenimientos
                         dataGridView1.Columns[col].Visible = false;
                 }
 
-                // Convertir columna estatus a checkbox
+                
                 if (dataGridView1.Columns.Contains("estatus"))
                 {
                     int colIndex = dataGridView1.Columns["estatus"].Index;
@@ -90,7 +89,7 @@ namespace Restaurante.Views.Mantenimientos
                     dataGridView1.Columns.Insert(colIndex, chkCol);
                 }
 
-                // Activar filtros de columna
+           
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -99,8 +98,7 @@ namespace Restaurante.Views.Mantenimientos
                 dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dataGridView1.ScrollBars = ScrollBars.Both;
 
-                // Enlazar DataBindingComplete para aplicar orden de columnas y ancho fijo
-                dataGridView1.DataBindingComplete -= dataGridView1_DataBindingComplete; // evitar duplicados
+                dataGridView1.DataBindingComplete -= dataGridView1_DataBindingComplete; 
                 dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
 
                 dataGridView1.Refresh();
@@ -183,23 +181,22 @@ namespace Restaurante.Views.Mantenimientos
         {
             get
             {
-                // Si no hay selección, devuelve null
                 if (cbxstatus.SelectedIndex == -1)
                     return null;
 
-                // Si el índice es 0, devuelve true; si es 1, devuelve false
+               
                 return cbxstatus.SelectedIndex == 0;
             }
             set
             {
                 if (value == null)
                 {
-                    // Deja el combo sin seleccionar
+               
                     cbxstatus.SelectedIndex = -1;
                 }
                 else
                 {
-                    // Si el valor es true → índice 0; si es false → índice 1
+                   
                     cbxstatus.SelectedIndex = (bool)value ? 0 : 1;
                 }
             }
@@ -231,8 +228,8 @@ namespace Restaurante.Views.Mantenimientos
                     da.Fill(dt);
 
                     cbxsucursal.DataSource = dt;
-                    cbxsucursal.DisplayMember = "nombre";       // visible
-                    cbxsucursal.ValueMember = "idsucursal";     // el ID (int)
+                    cbxsucursal.DisplayMember = "nombre";       
+                    cbxsucursal.ValueMember = "idsucursal";     
                     cbxsucursal.SelectedIndex = -1;
                 }
             }
@@ -245,7 +242,7 @@ namespace Restaurante.Views.Mantenimientos
         {
             try
             {
-                con.Open(); // asumo que 'con' es tu SqlConnection ya declarada y configurada
+                con.Open(); 
                 SqlCommand cmd = new SqlCommand("SELECT idtipo, descripcion FROM tipo_usuario", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -341,10 +338,10 @@ namespace Restaurante.Views.Mantenimientos
 
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-            // Guardar el idusuario en Tag para poder actualizar
+           
             txtndocumentos.Tag = row.Cells["idusuario"].Value;
 
-            // Llenar TextBox con los datos de la fila
+            
             txtndocumentos.Text = row.Cells["no_documento"].Value.ToString();
             txtnusuario.Text = row.Cells["usuario"].Value.ToString();
             txtcontrasena.Text = row.Cells["contrasena"].Value.ToString();
@@ -385,10 +382,9 @@ namespace Restaurante.Views.Mantenimientos
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-            // Asignar un ancho fijo a todas las columnas
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
-                col.Width = 150; // puedes cambiar 150 por el tamaño que quieras
+                col.Width = 150; 
             }
         }
 
@@ -427,7 +423,6 @@ namespace Restaurante.Views.Mantenimientos
 
                 int idUsuario = txtndocumentos.Tag == null ? 0 : Convert.ToInt32(txtndocumentos.Tag);
 
-                // Verificar duplicado por usuario (ignorando el mismo idUsuario)
                 string checkUsuario = "SELECT COUNT(*) FROM usuarios WHERE usuario = @Usuario AND idusuario <> @IdUsuario";
                 using (SqlCommand cmdCheckUsuario = new SqlCommand(checkUsuario, con))
                 {
@@ -440,7 +435,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                 }
 
-                // Verificar duplicado por número de documento (ignorando el mismo idUsuario)
+                
                 string checkDocumento = "SELECT COUNT(*) FROM usuarios WHERE no_documento = @NoDocumento AND idusuario <> @IdUsuario";
                 using (SqlCommand cmdCheckDoc = new SqlCommand(checkDocumento, con))
                 {
@@ -456,7 +451,7 @@ namespace Restaurante.Views.Mantenimientos
                 SqlCommand cmd;
                 if (idUsuario == 0)
                 {
-                    // INSERTAR
+                 
                     cmd = new SqlCommand(@"
                 INSERT INTO usuarios 
                 (no_documento, usuario, contrasena, telefono, nombre, correo, idsexo, idtipo, direccion, idsucursal, estatus, comision, fecha_creacion)
@@ -465,7 +460,7 @@ namespace Restaurante.Views.Mantenimientos
                 }
                 else
                 {
-                    // ACTUALIZAR
+               
                     cmd = new SqlCommand(@"
                 UPDATE usuarios
                 SET no_documento = @NoDocumento,
@@ -484,7 +479,7 @@ namespace Restaurante.Views.Mantenimientos
                     cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
                 }
 
-                // Parámetros
+              
                 cmd.Parameters.AddWithValue("@NoDocumento", txtndocumentos.Text.Trim());
                 cmd.Parameters.AddWithValue("@Usuario", txtnusuario.Text.Trim());
                 cmd.Parameters.AddWithValue("@Contrasena", txtcontrasena.Text.Trim());
@@ -502,7 +497,7 @@ namespace Restaurante.Views.Mantenimientos
 
                 MessageBox.Show(idUsuario == 0 ? "Usuario guardado correctamente." : "Usuario actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar campos y reset Tag
+             
                 txtndocumentos.Tag = null;
                 txtndocumentos.Clear();
                 txtnusuario.Clear();
@@ -519,7 +514,7 @@ namespace Restaurante.Views.Mantenimientos
 
               
 
-                // Recargar DataGridView
+               
                 CargarDatos();
             }
         }
@@ -527,7 +522,7 @@ namespace Restaurante.Views.Mantenimientos
 
         private bool ValidarCamposCompletos()
         {
-            // Campos obligatorios
+            
             if (string.IsNullOrWhiteSpace(txtndocumentos.Text))
             {
                 MessageBox.Show("Debes llenar el número de documento.", "Campo obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -577,7 +572,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Campos opcionales con validación de formato
+            
             if (!string.IsNullOrWhiteSpace(txtcomision.Text))
             {
                 if (!decimal.TryParse(txtcomision.Text.Trim(), out _))
@@ -588,12 +583,12 @@ namespace Restaurante.Views.Mantenimientos
                 }
             }
 
-            return true; // Todos los campos obligatorios y formatos son correctos
+            return true; 
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
-            // Limpiar campos del formulario
+            
             txtndocumentos.Tag = null;
             txtndocumentos.Clear();
             txtnusuario.Clear();
@@ -610,8 +605,14 @@ namespace Restaurante.Views.Mantenimientos
 
           
 
-            // Opcional: resetear selección
+         
             dataGridView1.ClearSelection();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            panel1.Visible = true;
+            CargarDatos();
         }
     }
 }

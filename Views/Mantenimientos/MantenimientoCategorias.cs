@@ -44,12 +44,12 @@ namespace Restaurante.Views.Mantenimientos
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // --- Cambio clave: Usar BindingSource ---
+               
                 BindingSource bindingSource = new BindingSource();
-                bindingSource.DataSource = dt; // Enlazar el DataTable al BindingSource
-                dataGridView1.DataSource = bindingSource; // Asignar el BindingSource al DataGridView
+                bindingSource.DataSource = dt; 
+                dataGridView1.DataSource = bindingSource; 
 
-                // Configuración de columnas (opcional)
+               
                 if (dataGridView1.Columns.Contains("IdCategoria"))
                     dataGridView1.Columns["IdCategoria"].Visible = false;
 
@@ -57,7 +57,7 @@ namespace Restaurante.Views.Mantenimientos
 
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                // --- Asegúrate de que DataGridViewAutoFilter esté configurado correctamente ---
+                
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -74,7 +74,7 @@ namespace Restaurante.Views.Mantenimientos
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                // Mostrar todas las columnas
+                
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.Visible = true;
@@ -102,7 +102,7 @@ namespace Restaurante.Views.Mantenimientos
             try
             {
                 int? idCategoria = txtnombre.Tag as int?;
-                // Usamos la variable para controlar edición
+               
                 bool esActualizacion = estaEditando && idCategoria.HasValue;
 
                 using (SqlConnection con = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;"))
@@ -112,7 +112,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Validar duplicado en actualización
+                       
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM categorias 
                     WHERE nombre = @Nombre AND idcategoria <> @IdCategoria", con);
@@ -126,7 +126,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar
+                      
                         cmd = new SqlCommand(@"
                     UPDATE categorias
                     SET nombre = @Nombre
@@ -135,7 +135,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Validar duplicado al insertar
+                       
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM categorias 
                     WHERE nombre = @Nombre", con);
@@ -148,13 +148,13 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar
+                        
                         cmd = new SqlCommand(@"
                     INSERT INTO categorias (nombre, estado)
                     VALUES (@Nombre, 1)", con);
                     }
 
-                    // Parámetro común
+                   
                     cmd.Parameters.AddWithValue("@Nombre", txtnombre.Text.Trim());
                     cmd.ExecuteNonQuery();
                 }
@@ -177,7 +177,7 @@ namespace Restaurante.Views.Mantenimientos
         }
         private void LimpiarCampos()
         {
-            // Limpiar campos de texto
+            
             txtnombre.Clear();
             estaEditando = false;
 
@@ -188,7 +188,7 @@ namespace Restaurante.Views.Mantenimientos
             txtnombre.Clear();
             btnborrar.Enabled = false;
             LimpiarCampos();
-            dataGridView1.ClearSelection(); // 🔁 Deselecciona cualquier fila
+            dataGridView1.ClearSelection(); 
 
         }
 
@@ -254,7 +254,7 @@ namespace Restaurante.Views.Mantenimientos
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 estaEditando = true;
                 txtnombre.Text = row.Cells["Nombre"].Value.ToString();
-                txtnombre.Tag = row.Cells["IdCategoria"].Value; // Solo si quieres mantener, pero con esta variable es opcional
+                txtnombre.Tag = row.Cells["IdCategoria"].Value; 
                 btnborrar.Enabled = true;
             }
         }

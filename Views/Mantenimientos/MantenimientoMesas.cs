@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurante.Views.Ventanas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +21,15 @@ namespace Restaurante.Views.Mantenimientos
             CargarSalas();
             btnborrar.Enabled = false;
 
+            EventosGlobales.PedidoEntregado += () =>
+            {
+                CargarDatosMesas();         
+                ActualizarColoresMesas();  
+            };
         }
 
-        private void CargarDatosMesas()
+       
+        public void CargarDatosMesas()
         {
             string connectionString = @"Server=localhost\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;";
 
@@ -48,7 +55,6 @@ namespace Restaurante.Views.Mantenimientos
 
                     dataGridView1.DataSource = bindingSource;
 
-                    // Ocultar columnas si es necesario
                     if (dataGridView1.Columns.Contains("estado"))
                         dataGridView1.Columns["estado"].Visible = false;
 
@@ -63,7 +69,7 @@ namespace Restaurante.Views.Mantenimientos
                     dataGridView1.ScrollBars = ScrollBars.Both;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    // Encabezados con filtro si usas DataGridViewAutoFilter
+                    
                     foreach (DataGridViewColumn col in dataGridView1.Columns)
                     {
                         col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -71,6 +77,36 @@ namespace Restaurante.Views.Mantenimientos
                 }
             }
         }
+
+        public void ActualizarColoresMesas()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["disponible"].Value != null)
+                {
+                    bool libre = Convert.ToInt32(row.Cells["disponible"].Value) == 1;
+                    row.DefaultCellStyle.BackColor = libre ? Color.LightGreen : Color.LightCoral;
+                }
+            }
+        }
+
+        private void AbrirPedidosPendientes()
+        {
+            var formPedidosPendientes = new PedidosPendientes();
+
+          
+            formPedidosPendientes.PedidoEntregado += () => CargarDatosMesas();
+
+            formPedidosPendientes.Show();
+        }
+
+       
+        private void btnVerPedidosPendientes_Click(object sender, EventArgs e)
+        {
+            AbrirPedidosPendientes();
+        }
+
+
 
         private void cbxmesa_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -105,7 +141,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     dataGridView1.DataSource = dt;
 
-                    // Opcional: ocultar columnas
+                  
                     if (dataGridView1.Columns.Contains("estado"))
                         dataGridView1.Columns["estado"].Visible = false;
                     if (dataGridView1.Columns.Contains("idmesa"))
@@ -121,12 +157,12 @@ namespace Restaurante.Views.Mantenimientos
         {
             dataGridView1.Columns.Clear();
 
-            // Definir columnas con el nombre que espera la base (que coincida con el DataTable)
+           
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "Sala", HeaderText = "Sala" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "nombre", HeaderText = "Nombre" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { Name = "CantidadPersona", HeaderText = "Cantidad Persona" });
 
-            // Opcional: definir ancho, etc.
+            
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -182,9 +218,9 @@ namespace Restaurante.Views.Mantenimientos
                     }
 
                     cbxmesa.DataSource = new BindingSource(salasDict, null);
-                    cbxmesa.DisplayMember = "Value";  // Lo que ve el usuario (nombre)
-                    cbxmesa.ValueMember = "Key";      // El valor real (idsala)
-                    cbxmesa.SelectedIndex = -1;       // Ninguna seleccionada
+                    cbxmesa.DisplayMember = "Value";  
+                    cbxmesa.ValueMember = "Key";     
+                    cbxmesa.SelectedIndex = -1;      
                 }
             }
             catch (Exception ex)
@@ -203,14 +239,14 @@ namespace Restaurante.Views.Mantenimientos
                 txtmesa.Text = row.Cells["nombre"].Value.ToString();
                 numericUpDown1.Value = Convert.ToDecimal(row.Cells["cantpersonas"].Value);
 
-                // Suponiendo que tienes un comboBox llamado cbSala para seleccionar la sala
+               
                 if (cbxmesa.Items.Count > 0)
                 {
-                    // Aquí se usa el ID de la sala
+                
                     cbxmesa.SelectedValue = Convert.ToInt32(row.Cells["idsala"].Value);
                 }
 
-                // Puedes usar txtnombre.Tag para almacenar el ID de mesa para editar luego
+             
                 txtmesa.Tag = row.Cells["idmesa"].Value;
                 btnborrar.Enabled = true;
             }
@@ -219,7 +255,7 @@ namespace Restaurante.Views.Mantenimientos
 
         private void LimpiarCampos()
         {
-            // Limpiar campos de texto
+            
             txtmesa.Clear();
             numericUpDown1.Value = numericUpDown1.Minimum;
             cbxmesa.SelectedIndex = -1;
@@ -242,9 +278,9 @@ namespace Restaurante.Views.Mantenimientos
 
                 if (resultado == DialogResult.Yes)
                 {
-                    EliminarMesa(id);   // <- Llama al método que marca como eliminada (estado = 0)
-                    CargarDatosMesas();      // <- Refresca el DataGridView
-                    LimpiarCampos();    // <- Limpia los TextBox y combos
+                    EliminarMesa(id);  
+                    CargarDatosMesas();      
+                    LimpiarCampos();  
                     btnborrar.Enabled = false;
                 }
             }
@@ -313,7 +349,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar
+                       
                         cmd = new SqlCommand(@"
                     UPDATE mesas
                     SET nombre = @Nombre, idsala = @IdSala, cantpersonas = @CantPersonas
@@ -335,13 +371,13 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar
+                      
                         cmd = new SqlCommand(@"
                     INSERT INTO mesas (nombre, idsala, cantpersonas)
                     VALUES (@Nombre, @IdSala, @CantPersonas)", con);
                     }
 
-                    // Parámetros comunes
+                  
                     cmd.Parameters.AddWithValue("@Nombre", txtmesa.Text.Trim());
                     cmd.Parameters.AddWithValue("@IdSala", idSala);
                     cmd.Parameters.AddWithValue("@CantPersonas", (int)numericUpDown1.Value);

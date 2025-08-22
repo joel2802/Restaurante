@@ -51,7 +51,27 @@
     <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DataGridView-AutoFilter.1.1.0\lib\net20\DataGridViewAutoFilter.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -77,6 +97,12 @@
     <Compile Include="Consultas\ConsultaClientes.Designer.cs">
       <DependentUpon>ConsultaClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Consultas\ConsultaEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaEmpleados.Designer.cs">
+      <DependentUpon>ConsultaEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Consultas\ConsultaMedidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +114,12 @@
     </Compile>
     <Compile Include="Consultas\ConsultaMesas.Designer.cs">
       <DependentUpon>ConsultaMesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ConsultaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ConsultaProductos.Designer.cs">
+      <DependentUpon>ConsultaProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Consultas\ConsultaProveedor.cs">
       <SubType>Form</SubType>
@@ -101,8 +133,53 @@
     <Compile Include="Consultas\ConsultaSalas.Designer.cs">
       <DependentUpon>ConsultaSalas.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventosGlobales.cs" />
     <Compile Include="model\clienteModel.cs" />
     <Compile Include="model\UsuarioModel.cs" />
+    <Compile Include="Movimientos\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\FacturaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\FacturaView.Designer.cs">
+      <DependentUpon>FacturaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\MovimientoPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\MovimientoPOS.Designer.cs">
+      <DependentUpon>MovimientoPOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\ReporteFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\ReporteFacturas.Designer.cs">
+      <DependentUpon>ReporteFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimientos\ReporteFinal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimientos\ReporteFinal.Designer.cs">
+      <DependentUpon>ReporteFinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Ventas.Designer.cs">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Views\Mantenimientos\MantenimientoCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +249,18 @@
     <Compile Include="Repositories\Interfaces\LoginRepository.cs" />
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\ILoginView.cs" />
+    <Compile Include="Views\Ventanas\ControlFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Ventanas\ControlFacturas.Designer.cs">
+      <DependentUpon>ControlFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventanas\PedidosPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Ventanas\PedidosPendientes.Designer.cs">
+      <DependentUpon>PedidosPendientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ventanas\VentanaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,17 +273,40 @@
     <EmbeddedResource Include="Consultas\ConsultaClientes.resx">
       <DependentUpon>ConsultaClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaEmpleados.resx">
+      <DependentUpon>ConsultaEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Consultas\ConsultaMedidas.resx">
       <DependentUpon>ConsultaMedidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas\ConsultaMesas.resx">
       <DependentUpon>ConsultaMesas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ConsultaProductos.resx">
+      <DependentUpon>ConsultaProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Consultas\ConsultaProveedor.resx">
       <DependentUpon>ConsultaProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas\ConsultaSalas.resx">
       <DependentUpon>ConsultaSalas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\FacturaReport.rdlc" />
+    <EmbeddedResource Include="Movimientos\FacturaView.resx">
+      <DependentUpon>FacturaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\MovimientoPOS.resx">
+      <DependentUpon>MovimientoPOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\ReporteFacturas.resx">
+      <DependentUpon>ReporteFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\ReporteFinal.resx">
+      <DependentUpon>ReporteFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimientos\ReportVentas.rdlc" />
+    <EmbeddedResource Include="Reportes\Ventas.resx">
+      <DependentUpon>Ventas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -231,9 +343,37 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ventanas\ControlFacturas.resx">
+      <DependentUpon>ControlFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Ventanas\PedidosPendientes.resx">
+      <DependentUpon>PedidosPendientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Ventanas\VentanaUsuario.resx">
       <DependentUpon>VentanaUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Movimientos\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Movimientos\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Movimientos\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Movimientos\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Movimientos\DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Movimientos\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -287,7 +427,42 @@
     <Content Include="dbconfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\hamburguesa %281%29.png" />
+    <None Include="Resources\restaurante %281%29.png" />
+    <None Include="Resources\reporte.png" />
+    <None Include="Resources\beneficio-financiero.png" />
+    <None Include="Resources\consulta.png" />
+    <None Include="Resources\French_fries_Hamburger_Fast_food_Coca-Cola_572340_1280x853.jpg" />
+    <None Include="Resources\btn_eliminar_pink.png" />
+    <None Include="Resources\borrar.png" />
+    <None Include="Resources\cepillo-de-pintura.png" />
+    <None Include="Resources\guardar-el-archivo.png" />
+    <None Include="Resources\buscar %281%29.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\tecnico %281%29.png" />
+    <None Include="Resources\canasta-de-frutas %281%29.png" />
+    <None Include="Resources\proveedor %281%29.png" />
+    <None Include="Resources\mesa-redonda %281%29.png" />
+    <None Include="Resources\la-medida %281%29.png" />
+    <None Include="Resources\empleado-de-oficina %281%29.png" />
+    <None Include="Resources\sofa %281%29.png" />
+    <None Include="Resources\opciones %281%29.png" />
+    <None Include="Resources\servicio-al-cliente %282%29.png" />
+    <None Include="Resources\servicio-al-cliente %281%29.png" />
     <None Include="Resources\otroFondo.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

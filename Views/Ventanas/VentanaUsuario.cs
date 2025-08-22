@@ -73,12 +73,12 @@ namespace Restaurante.Views.Ventanas
                     }
                 }
 
-                // ✅ BindingSource obligatorio para usar DataGridViewAutoFilter u otras funciones
+                
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = usuarioList;
                 dataGridView1.DataSource = bindingSource;
 
-                // Ocultar columnas no necesarias
+
                 if (dataGridView1.Columns.Contains("IdUsuario"))
                     dataGridView1.Columns["IdUsuario"].Visible = false;
 
@@ -103,12 +103,12 @@ namespace Restaurante.Views.Ventanas
 
                 dataGridView1.Refresh();
 
-                // Configurar columnas y scroll
+               
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
                 dataGridView1.ScrollBars = ScrollBars.Both;
                 dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                // Activar filtrado si usas DataGridViewAutoFilter
+               
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -119,7 +119,7 @@ namespace Restaurante.Views.Ventanas
         {
            
 
-            // Ocultar columnas indeseadas
+          
             if (dataGridView1.Columns.Contains("Status"))
                 dataGridView1.Columns["Status"].Visible = false;
 
@@ -177,7 +177,6 @@ namespace Restaurante.Views.Ventanas
                 if (dataGridView1.Columns.Contains("IdTipo") && fila.Cells["IdTipo"].Value != DBNull.Value)
                     idTipo = Convert.ToInt32(fila.Cells["IdTipo"].Value);
 
-                // Crear el modelo
                 UsuarioModel usuario = new UsuarioModel
                 {
                     IdUsuario = idUsuario,

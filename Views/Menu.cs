@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Restaurante.Consultas;
+using Restaurante.Movimientos;
 using Restaurante.Presenters;
+using Restaurante.Reportes;
 using Restaurante.Repositories;
 using Restaurante.Views;
 using Restaurante.Views.Mantenimientos;
@@ -40,7 +42,7 @@ namespace Restaurante
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            this.IsMdiContainer = true;
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -124,6 +126,78 @@ namespace Restaurante
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
            MantenimientoProductos ver = new MantenimientoProductos();
+            ver.Show();
+        }
+
+        private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MantenimientoCliente ver = new MantenimientoCliente();
+            ver.Show();
+        }
+
+        private void categoriasToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MantenimientoCategorias ver = new MantenimientoCategorias();
+            ver.Show();
+        }
+
+        private void sToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoSalas ver = new MantenimientoSalas();
+            ver.Show();
+        }
+
+        private void empleadosToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MantenimientoUsuarios ver = new MantenimientoUsuarios();
+            ver.Show();
+        }
+
+        private void medidasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MantenimientoMedida ver = new MantenimientoMedida();
+            ver.Show();
+        }
+
+        private void mesasToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MantenimientoMesas ver = new MantenimientoMesas();
+            ver.Show();
+        }
+
+        private void proovedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoProveedor ver = new MantenimientoProveedor();
+            ver.Show();
+        }
+
+        private void productosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MantenimientoProductos ver = new MantenimientoProductos();
+            ver.Show();
+        }
+
+        private void pOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovimientoPOS ver = new MovimientoPOS();
+            ver.Show();
+        }
+
+        private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Ventas ver = new Ventas();
+            ver.Show();
+        }
+
+        private void empleadosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ConsultaEmpleados ver = new ConsultaEmpleados();
+            ver.Show();
+        }
+
+        private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConsultaProductos ver = new  ConsultaProductos();
             ver.Show();
         }
     }

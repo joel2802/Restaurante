@@ -26,6 +26,9 @@ namespace Restaurante.Views.Mantenimientos
             CargarTipoCliente();
             CargarTipoDocumento();
             CargarProvincias();
+            panel1.Visible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ReadOnly = true;
 
 
             dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
@@ -35,7 +38,7 @@ namespace Restaurante.Views.Mantenimientos
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
-            // Limpiar todos los TextBox
+            
             txtndocumento.Clear();
             txtnombre.Clear();
             txtrazon.Clear();
@@ -45,12 +48,12 @@ namespace Restaurante.Views.Mantenimientos
             txtdireccion.Clear();
             txtcredito.Clear();
 
-            // Resetear todos los ComboBox
+            
             btntipocliente.SelectedIndex = -1;
             btntipodocumento.SelectedIndex = -1;
             cbxprovincia.SelectedIndex = -1;
 
-            // Enfocar en el primer campo
+            
             btntipocliente.Focus();
             dataGridView1.ClearSelection();
             estaEditandoCliente = false;
@@ -156,7 +159,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Validar que otro cliente no tenga ese documento
+                        
                         SqlCommand checkUpdateCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM clientes 
                     WHERE nodocumento = @NoDocumento AND idcliente <> @IdCliente", con);
@@ -170,7 +173,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Actualizar cliente existente
+                       
                         cmd = new SqlCommand(@"
                     UPDATE clientes
                     SET 
@@ -191,7 +194,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Verificar si ya existe un cliente con ese número de documento
+                        
                         SqlCommand checkInsertCmd = new SqlCommand(@"
                     SELECT COUNT(*) FROM clientes 
                     WHERE nodocumento = @NoDocumento", con);
@@ -204,7 +207,7 @@ namespace Restaurante.Views.Mantenimientos
                             return;
                         }
 
-                        // Insertar nuevo cliente
+                        
                         cmd = new SqlCommand(@"
                     INSERT INTO clientes
                     (idtipocliente, idtipodocumento, nodocumento, nombre, razonsocial, girocliente, telefono, correo, direccion, estado, idprovincia, fecha_creacion, limitecredito)
@@ -215,7 +218,7 @@ namespace Restaurante.Views.Mantenimientos
                         cmd.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
                     }
 
-                    // Parámetros comunes
+                    
                     cmd.Parameters.AddWithValue("@IdTipoCliente", btntipocliente.SelectedValue ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@IdTipoDocumento", btntipodocumento.SelectedValue ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@IdProvincia", cbxprovincia.SelectedValue ?? (object)DBNull.Value);
@@ -272,7 +275,7 @@ namespace Restaurante.Views.Mantenimientos
 
         private void LimpiarCampos()
         {
-            // Limpiar campos de texto
+           
             txtndocumento.Clear();
             txtnombre.Clear();
             txtrazon.Clear();
@@ -283,12 +286,12 @@ namespace Restaurante.Views.Mantenimientos
             txtcredito.Clear();
             estaEditandoCliente = false;
 
-            // Restablecer combobox al primer valor (si hay datos cargados)
+            
             btntipocliente.SelectedIndex = -1;
             btntipodocumento.SelectedIndex = -1;
             cbxprovincia.SelectedIndex = -1;
 
-            // También puedes mover el foco al primer campo si lo deseas
+           
             txtndocumento.Tag = null;
             btntipodocumento.Focus();
         }
@@ -299,7 +302,7 @@ namespace Restaurante.Views.Mantenimientos
         {
 
 
-            // Define la cadena de conexión (ajústala a tu servidor y base de datos)
+         
             string connectionString = @"Server=localhost\SQLEXPRESS;Database=restaurante;Trusted_Connection=True;";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -336,17 +339,17 @@ namespace Restaurante.Views.Mantenimientos
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // Crear y enlazar el BindingSource al DataTable
+                
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = dt;
 
-                // Asignar el BindingSource al DataGridView (solo una vez)
+               
                 dataGridView1.DataSource = bindingSource;
 
-                // Lista de columnas en el orden deseado, FechaCreacion al final
+                
 
 
-                // Ocultar columnas de ID que no quieres mostrar
+               
                 dataGridView1.Columns["IdCliente"].Visible = false;
                 dataGridView1.Columns["IdTipoCliente"].Visible = false;
                 dataGridView1.Columns["IdTipoDocumento"].Visible = false;
@@ -360,11 +363,11 @@ namespace Restaurante.Views.Mantenimientos
                      
                 if (dataGridView1.Columns.Contains("TipoClienteNombre"))
                 {
-                    dataGridView1.Columns["TipoClienteNombre"].Width = 150; // o el ancho que quieras
+                    dataGridView1.Columns["TipoClienteNombre"].Width = 150; 
                 }
 
 
-                // Activar filtrado en encabezados
+               
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.HeaderCell = new DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell(col.HeaderCell);
@@ -381,7 +384,7 @@ namespace Restaurante.Views.Mantenimientos
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                // Asegúrate de que el DataGridView no oculte columnas
+              
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     col.Visible = true;
@@ -485,7 +488,7 @@ namespace Restaurante.Views.Mantenimientos
                     EliminarCliente(id);
                     CargarDatos();
                     LimpiarCampos();
-                    // ❌ Deshabilitar botón después del borrado
+                   
                     btnborrar.Enabled = false;
                 }
             }
@@ -511,7 +514,7 @@ namespace Restaurante.Views.Mantenimientos
                 txtcorreo.Text = fila.Cells["Correo"].Value?.ToString();
                 txtdireccion.Text = fila.Cells["Direccion"].Value?.ToString();
 
-                // Limite de crédito puede ser nulo
+               
                 txtcredito.Text = fila.Cells["LimiteCredito"].Value != DBNull.Value
                     ? fila.Cells["LimiteCredito"].Value.ToString()
                     : "";
@@ -530,21 +533,21 @@ namespace Restaurante.Views.Mantenimientos
         }
         private bool ValidarCamposCliente()
         {
-            // Tipo de Cliente
+           
             if (btntipocliente.SelectedIndex == -1)
             {
                 MessageBox.Show("El tipo de cliente es requerido.");
                 return false;
             }
 
-            // Tipo de Documento
+           
             if (btntipodocumento.SelectedIndex == -1)
             {
                 MessageBox.Show("El tipo de documento es requerido.");
                 return false;
             }
 
-            // Número de Documento
+            
             string noDocumento = txtndocumento.Text.Trim();
             if (string.IsNullOrWhiteSpace(noDocumento))
             {
@@ -562,7 +565,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Nombre
+            
             string nombre = txtnombre.Text.Trim();
             if (string.IsNullOrWhiteSpace(nombre))
             {
@@ -575,7 +578,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Razón Social
+           
             string razon = txtrazon.Text.Trim();
             if (string.IsNullOrWhiteSpace(razon))
             {
@@ -588,7 +591,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Giro del Cliente
+           
             string giro = txtgirocliente.Text.Trim();
             if (string.IsNullOrWhiteSpace(giro))
             {
@@ -601,7 +604,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Teléfono
+            
             string telefono = txttelf.Text.Trim();
             if (string.IsNullOrWhiteSpace(telefono))
             {
@@ -614,7 +617,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Correo
+           
             string correo = txtcorreo.Text.Trim();
             if (string.IsNullOrWhiteSpace(correo))
             {
@@ -632,14 +635,14 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Provincia
+           
             if (cbxprovincia.SelectedIndex == -1)
             {
                 MessageBox.Show("La provincia es requerida.");
                 return false;
             }
 
-            // Dirección
+            
             string direccion = txtdireccion.Text.Trim();
             if (string.IsNullOrWhiteSpace(direccion))
             {
@@ -652,7 +655,6 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Límite de crédito (opcional pero debe ser válido si se escribe)
             if (!string.IsNullOrWhiteSpace(txtcredito.Text))
             {
                 if (!decimal.TryParse(txtcredito.Text.Trim(), out decimal limite) || limite < 0)
@@ -672,10 +674,10 @@ namespace Restaurante.Views.Mantenimientos
 
         private void txtndocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir solo dígitos (0–9) y la tecla de retroceso (Backspace)
+            
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; // Cancela el carácter si no es número
+                e.Handled = true;
             }
         }
 
@@ -683,7 +685,7 @@ namespace Restaurante.Views.Mantenimientos
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; // Cancela el carácter si no es número
+                e.Handled = true; 
             }
         }
 
@@ -691,7 +693,7 @@ namespace Restaurante.Views.Mantenimientos
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; // Cancela el carácter si no es número
+                e.Handled = true; 
             }
         }
 
@@ -701,6 +703,12 @@ namespace Restaurante.Views.Mantenimientos
             {
                 e.Handled = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = true;
+            CargarDatos();
         }
     }
 }

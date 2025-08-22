@@ -108,16 +108,16 @@ namespace Restaurante.Views.Mantenimientos
         {
             try
             {
-                // Si la ruta no es nula ni vacía y el archivo existe
+            
                 if (!string.IsNullOrWhiteSpace(rutaFoto) && File.Exists(rutaFoto))
                 {
                     pbfoto.Image = Image.FromFile(rutaFoto);
                 }
                 else
                 {
-                    // Si no existe, ponemos imagen por defecto
+                    
                     pbfoto.Image = null;
-                    // Asegúrate de agregar "imagenDefault" a los recursos del proyecto
+                    
                 }
             }
             catch (Exception ex)
@@ -129,8 +129,8 @@ namespace Restaurante.Views.Mantenimientos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Validar campos antes de guardar
-            if (!ValidarCampos()) // Implementa esta función según tus reglas
+           
+            if (!ValidarCampos()) 
                 return;
 
             try
@@ -144,7 +144,7 @@ namespace Restaurante.Views.Mantenimientos
 
                     if (esActualizacion)
                     {
-                        // Actualizar producto existente
+                        
                         cmd = new SqlCommand(@"
                     UPDATE Productos SET
                         CodigoProducto = @CodigoProducto,
@@ -171,7 +171,7 @@ namespace Restaurante.Views.Mantenimientos
                     }
                     else
                     {
-                        // Insertar nuevo producto
+                        
                         cmd = new SqlCommand(@"
                     INSERT INTO Productos
                     (CodigoProducto, Nombre, IdCategoria, PrecioVenta, IdImpuesto, IdProveedor, PrecioCompra, Descuento, Existencia, NoLote, StockMinimo, StockMaximo, FechaElaboracion, FechaExpiracion, CodigoDeBarra, RutaFoto, Estado, EsProductoFinal)
@@ -179,7 +179,7 @@ namespace Restaurante.Views.Mantenimientos
                     (@CodigoProducto, @Nombre, @IdCategoria, @PrecioVenta, @IdImpuesto, @IdProveedor, @PrecioCompra, @Descuento, @Existencia, @NoLote, @StockMinimo, @StockMaximo, @FechaElaboracion, @FechaExpiracion, @CodigoDeBarra, @RutaFoto, @Estado, @EsProductoFinal)", con);
                     }
 
-                    // Parámetros comunes
+                    
                     cmd.Parameters.AddWithValue("@CodigoProducto", txtcodigoproducto.Text.Trim());
                     cmd.Parameters.AddWithValue("@Nombre", txtnombreproducto.Text.Trim());
                     cmd.Parameters.AddWithValue("@IdCategoria", cmbcategoria.SelectedValue ?? (object)DBNull.Value);
@@ -196,13 +196,12 @@ namespace Restaurante.Views.Mantenimientos
                     cmd.Parameters.AddWithValue("@FechaExpiracion", fechavencimiento.Checked ? (object)fechavencimiento.Value : DBNull.Value);
                     cmd.Parameters.AddWithValue("@CodigoDeBarra", txtcodigobarra.Text.Trim() != "" ? (object)txtcodigobarra.Text.Trim() : DBNull.Value);
                     cmd.Parameters.AddWithValue("@RutaFoto", !string.IsNullOrEmpty(rutaFoto) ? (object)rutaFoto : DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Estado", 1); // Siempre activo al crear/editar
-                    cmd.Parameters.AddWithValue("@EsProductoFinal", 1); // Ajusta según tu lógica
+                    cmd.Parameters.AddWithValue("@Estado", 1); 
+                    cmd.Parameters.AddWithValue("@EsProductoFinal", 1); 
 
                     cmd.ExecuteNonQuery();
                 }
 
-                // Refrescar datos y limpiar formulario
                 CargarProductos();
                 LimpiarCampos();
 
@@ -259,15 +258,15 @@ namespace Restaurante.Views.Mantenimientos
                 da.Fill(dt);
                 dtproducto.DataSource = dt;
 
-                // Ocultar columnas internas si quieres:
+                
                 if (dtproducto.Columns.Contains("IdProducto")) dtproducto.Columns["IdProducto"].Visible = false;
                 if (dtproducto.Columns.Contains("IdCategoria")) dtproducto.Columns["IdCategoria"].Visible = false;
                 if (dtproducto.Columns.Contains("IdImpuesto")) dtproducto.Columns["IdImpuesto"].Visible = false;
                 if (dtproducto.Columns.Contains("IdProveedor")) dtproducto.Columns["IdProveedor"].Visible = false;
                 if (dtproducto.Columns.Contains("RutaFoto")) dtproducto.Columns["RutaFoto"].Visible = false;
 
-                // Suscribir evento para formatear visualmente Estado y EsProductoFinal
-                dtproducto.CellFormatting -= dtproducto_CellFormatting; // evitar duplicados
+                
+                dtproducto.CellFormatting -= dtproducto_CellFormatting; 
                 dtproducto.CellFormatting += dtproducto_CellFormatting;
             }
             catch (Exception ex)
@@ -345,10 +344,9 @@ namespace Restaurante.Views.Mantenimientos
 
             DataGridViewRow row = dtproducto.Rows[e.RowIndex];
 
-            // Guardar el ID del producto
             idProductoSeleccionado = Convert.ToInt32(row.Cells["IdProducto"].Value);
 
-            // Asignar valores a los campos
+            
             txtcodigoproducto.Text = row.Cells["CodigoProducto"].Value?.ToString();
             txtnombreproducto.Text = row.Cells["Nombre"].Value?.ToString();
 
@@ -390,10 +388,10 @@ namespace Restaurante.Views.Mantenimientos
 
             txtcodigobarra.Text = row.Cells["CodigoDeBarra"].Value?.ToString();
 
-            // Ruta de la foto
+           
             rutaFoto = row.Cells["RutaFoto"].Value?.ToString();
 
-            // Mostrar foto sin bloquear archivo
+            
             try
             {
                 if (!string.IsNullOrEmpty(rutaFoto) && File.Exists(rutaFoto))
@@ -451,11 +449,6 @@ namespace Restaurante.Views.Mantenimientos
             }
         }
 
-
-
-
-
-
         private void MantenimientoProductos_Load(object sender, EventArgs e)
         {
             CargarCategoria();
@@ -469,38 +462,38 @@ namespace Restaurante.Views.Mantenimientos
 
         private void btnfoto_Click(object sender, EventArgs e)
         {
-            // Ruta dinámica para que funcione con cualquier usuario
+           
             string carpetaFotos = Path.Combine(
                 @"C:\Users",
                 Environment.UserName,
                 @"source\repos\Restaurante\FotoProductos"
             );
 
-            // Crear carpeta si no existe
+            
             if (!Directory.Exists(carpetaFotos))
                 Directory.CreateDirectory(carpetaFotos);
 
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Imágenes|*.jpg;*.jpeg;*.png;*.bmp;*.webp";
-                ofd.InitialDirectory = carpetaFotos; // 🔹 Aquí indicamos la carpeta inicial
+                ofd.InitialDirectory = carpetaFotos; 
                 ofd.Title = "Seleccionar imagen";
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        // Nombre único
+                     
                         string nombreArchivo = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + Path.GetFileName(ofd.FileName);
                         string destino = Path.Combine(carpetaFotos, nombreArchivo);
 
-                        // Copiar imagen
+                       
                         File.Copy(ofd.FileName, destino, true);
 
-                        // Guardar ruta para BD
+                        
                         rutaFoto = destino;
 
-                        // Mostrar imagen desde memoria
+                        
                         byte[] bytes = File.ReadAllBytes(destino);
                         using (var ms = new MemoryStream(bytes))
                         {
@@ -527,12 +520,12 @@ namespace Restaurante.Views.Mantenimientos
 
         private void SoloNumerosDecimales(object sender, KeyPressEventArgs e)
         {
-            // Permitir 0-9, backspace y punto (.)
+       
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
-            // evitar más de un punto
+      
             TextBox tb = sender as TextBox;
             if (e.KeyChar == '.' && tb != null && tb.Text.Contains("."))
             {
@@ -541,7 +534,7 @@ namespace Restaurante.Views.Mantenimientos
         }
         private bool ValidarCampos()
         {
-            // Nombre del producto
+          
             string nombre = txtnombreproducto.Text.Trim();
             if (string.IsNullOrWhiteSpace(nombre))
             {
@@ -554,14 +547,14 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Proveedor
+          
             if (cmbproveedor.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un proveedor.");
                 return false;
             }
 
-            // Precio de compra
+            
             string precioCompra = txtpreciocompra.Text.Trim();
             if (string.IsNullOrWhiteSpace(precioCompra))
             {
@@ -574,14 +567,13 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Categoría
             if (cmbcategoria.SelectedValue == null)
             {
                 MessageBox.Show("Debe seleccionar una categoría válida.");
                 return false;
             }
 
-            // Existencia
+        
             string existencia = txtexistenciaprod.Text.Trim();
             if (string.IsNullOrWhiteSpace(existencia))
             {
@@ -594,7 +586,6 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Precio de venta
             string precioVenta = txtprecioventa.Text.Trim();
             if (string.IsNullOrWhiteSpace(precioVenta))
             {
@@ -607,7 +598,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Descuento
+           
             string descuento = txtdescuento.Text.Trim();
             if (string.IsNullOrWhiteSpace(descuento))
             {
@@ -620,14 +611,14 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Impuesto
+          
             if (cmbimpuesto.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un impuesto.");
                 return false;
             }
 
-            // Stock máximo
+            
             string stockMax = txtstockmaximo.Text.Trim();
             if (string.IsNullOrWhiteSpace(stockMax))
             {
@@ -640,7 +631,6 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Stock mínimo
             string stockMin = txtstockminimo.Text.Trim();
             if (string.IsNullOrWhiteSpace(stockMin))
             {
@@ -653,14 +643,12 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Validar que el mínimo no sea mayor que el máximo
             if (min > max)
             {
                 MessageBox.Show("El stock mínimo no puede ser mayor que el stock máximo.");
                 return false;
             }
 
-            // Número de lote
             string lote = txtnolote.Text.Trim();
             if (string.IsNullOrWhiteSpace(lote))
             {
@@ -673,14 +661,14 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Fechas de elaboración y vencimiento
+          
             if (fechavencimiento.Value.Date <= fechaelaboracion.Value.Date)
             {
                 MessageBox.Show("La fecha de vencimiento debe ser posterior a la fecha de elaboración.");
                 return false;
             }
 
-            // Código de producto
+            
             string codigoProducto = txtcodigoproducto.Text.Trim();
             if (string.IsNullOrWhiteSpace(codigoProducto))
             {
@@ -693,7 +681,7 @@ namespace Restaurante.Views.Mantenimientos
                 return false;
             }
 
-            // Código de barra
+         
             string codigoBarra = txtcodigobarra.Text.Trim();
             if (string.IsNullOrWhiteSpace(codigoBarra))
             {
@@ -873,9 +861,9 @@ namespace Restaurante.Views.Mantenimientos
 
                 if (resultado == DialogResult.Yes)
                 {
-                    EliminarProducto(id);   // 🔹 Método que pusimos antes
-                    CargarProductosEnGrid();          // 🔹 Refresca el DataGridView
-                    LimpiarCampos();        // 🔹 Limpia los TextBox/controles
+                    EliminarProducto(id); 
+                    CargarProductosEnGrid();         
+                    LimpiarCampos();     
                     
                 }
             }
@@ -936,7 +924,7 @@ namespace Restaurante.Views.Mantenimientos
                 e.Value = esFinal == 1 ? "Sí" : "No";
                 e.FormattingApplied = true;
 
-                // Opcional: resaltar productos finales
+             
                 if (esFinal == 1)
                 {
                     dtproducto.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;

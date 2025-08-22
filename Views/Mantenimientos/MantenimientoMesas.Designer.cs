@@ -115,32 +115,41 @@
             // 
             // btnborrar
             // 
+            this.btnborrar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnborrar.Image = global::Restaurante.Properties.Resources.borrar;
+            this.btnborrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnborrar.Location = new System.Drawing.Point(37, 427);
             this.btnborrar.Name = "btnborrar";
             this.btnborrar.Size = new System.Drawing.Size(115, 53);
             this.btnborrar.TabIndex = 94;
             this.btnborrar.Text = "Borrar";
-            this.btnborrar.UseVisualStyleBackColor = true;
+            this.btnborrar.UseVisualStyleBackColor = false;
             this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
             // 
             // btnlimpiar
             // 
+            this.btnlimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnlimpiar.Image = global::Restaurante.Properties.Resources.cepillo_de_pintura;
+            this.btnlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlimpiar.Location = new System.Drawing.Point(221, 427);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(109, 55);
             this.btnlimpiar.TabIndex = 95;
             this.btnlimpiar.Text = "Limpiar";
-            this.btnlimpiar.UseVisualStyleBackColor = true;
+            this.btnlimpiar.UseVisualStyleBackColor = false;
             this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
             // 
             // btnguardar
             // 
-            this.btnguardar.Location = new System.Drawing.Point(409, 429);
+            this.btnguardar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnguardar.Image = global::Restaurante.Properties.Resources.guardar_el_archivo;
+            this.btnguardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnguardar.Location = new System.Drawing.Point(387, 429);
             this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(95, 53);
+            this.btnguardar.Size = new System.Drawing.Size(120, 53);
             this.btnguardar.TabIndex = 96;
             this.btnguardar.Text = "Guardar";
-            this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.UseVisualStyleBackColor = false;
             this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // MantenimientoMesas
@@ -158,7 +167,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxmesa);
             this.Controls.Add(this.label3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MantenimientoMesas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoMesas";
             this.Load += new System.EventHandler(this.MantenimientoMesas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -176,9 +187,9 @@
         private System.Windows.Forms.TextBox txtmesa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnborrar;
         private System.Windows.Forms.Button btnlimpiar;
         private System.Windows.Forms.Button btnguardar;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

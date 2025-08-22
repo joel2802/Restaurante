@@ -51,10 +51,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtdireccion = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnguardarr = new System.Windows.Forms.Button();
-            this.btnborrar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnlimpiar = new System.Windows.Forms.Button();
+            this.btnborrar = new System.Windows.Forms.Button();
+            this.btnguardarr = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -290,41 +293,42 @@
             // 
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(647, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(883, 716);
+            this.dataGridView1.Size = new System.Drawing.Size(704, 407);
             this.dataGridView1.TabIndex = 79;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // btnguardarr
+            // panel1
             // 
-            this.btnguardarr.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnguardarr.Location = new System.Drawing.Point(460, 747);
-            this.btnguardarr.Name = "btnguardarr";
-            this.btnguardarr.Size = new System.Drawing.Size(141, 60);
-            this.btnguardarr.TabIndex = 80;
-            this.btnguardarr.Text = "Guardar";
-            this.btnguardarr.UseVisualStyleBackColor = false;
-            this.btnguardarr.Click += new System.EventHandler(this.btnguardarr_Click);
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Location = new System.Drawing.Point(641, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(704, 407);
+            this.panel1.TabIndex = 83;
             // 
-            // btnborrar
+            // button1
             // 
-            this.btnborrar.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnborrar.Location = new System.Drawing.Point(52, 747);
-            this.btnborrar.Name = "btnborrar";
-            this.btnborrar.Size = new System.Drawing.Size(151, 60);
-            this.btnborrar.TabIndex = 81;
-            this.btnborrar.Text = "Borrar";
-            this.btnborrar.UseVisualStyleBackColor = false;
-            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Image = global::Restaurante.Properties.Resources.buscar__1_;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(652, 747);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 60);
+            this.button1.TabIndex = 84;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnlimpiar
             // 
             this.btnlimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnlimpiar.Image = global::Restaurante.Properties.Resources.cepillo_de_pintura;
+            this.btnlimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnlimpiar.Location = new System.Drawing.Point(265, 747);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(138, 60);
@@ -333,15 +337,42 @@
             this.btnlimpiar.UseVisualStyleBackColor = false;
             this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
             // 
+            // btnborrar
+            // 
+            this.btnborrar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnborrar.Image = global::Restaurante.Properties.Resources.borrar;
+            this.btnborrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnborrar.Location = new System.Drawing.Point(52, 747);
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(151, 60);
+            this.btnborrar.TabIndex = 81;
+            this.btnborrar.Text = "Borrar";
+            this.btnborrar.UseVisualStyleBackColor = false;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
+            // 
+            // btnguardarr
+            // 
+            this.btnguardarr.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnguardarr.Image = global::Restaurante.Properties.Resources.guardar_el_archivo;
+            this.btnguardarr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnguardarr.Location = new System.Drawing.Point(457, 747);
+            this.btnguardarr.Name = "btnguardarr";
+            this.btnguardarr.Size = new System.Drawing.Size(141, 60);
+            this.btnguardarr.TabIndex = 80;
+            this.btnguardarr.Text = "Guardar";
+            this.btnguardarr.UseVisualStyleBackColor = false;
+            this.btnguardarr.Click += new System.EventHandler(this.btnguardarr_Click);
+            // 
             // MantenimientoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1555, 859);
+            this.ClientSize = new System.Drawing.Size(1363, 859);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnlimpiar);
             this.Controls.Add(this.btnborrar);
             this.Controls.Add(this.btnguardarr);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtdireccion);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtcorreo);
@@ -370,6 +401,7 @@
             this.Text = "MantenimientoCliente";
             this.Load += new System.EventHandler(this.MantenimientoCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +435,7 @@
         private System.Windows.Forms.Button btnguardarr;
         private System.Windows.Forms.Button btnborrar;
         private System.Windows.Forms.Button btnlimpiar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }
